@@ -1,12 +1,44 @@
 ---
 - hosts: all
   become: yes
-  gather_facts: yes
+  gather_facts: false
+  ignore_errors: true
   vars:
     user_name: serge2027
     collor: red
 
   tasks:
+    #  - name: install softwares
+    #    package:
+    #     state: present
+    #     name: 
+    #       - wget
+    #       - ntp
+    #       - finger
+    #       - curl
+    #  - name: Install softwares
+    #    package:
+    #     state: present 
+    #     name: "{{ item }}"
+    #    with_items:
+    #        - wget
+    #        - ntp
+    #        - finger
+    #        - curl
+     - name: Check uptime
+       command: uptime
+       tags:
+         - cm
+     - name: Install softwares
+       package:
+        state: present
+        name: "{{ item }}"
+       loop:
+         - wget
+         - finger
+         - curl
+         - ntp
+
      - name: Install passwd package
        apt:
           name: passwd
@@ -27,6 +59,7 @@
 
 - hosts: db
   become: yes
+  gather_facts: no
   tasks:
      - name: install apache
        apt: 
