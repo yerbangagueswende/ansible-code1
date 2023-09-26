@@ -12,4 +12,6 @@
           line: module-store = serge
           state: absent 
           #create: yes
-          # This line os to test CI/CD build
+# This line is to test CI/CD build for yml files.
+
+          
