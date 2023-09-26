@@ -12,3 +12,4 @@
           line: module-store = serge
           state: absent 
           #create: yes
+          # This line os to test CI/CD build
